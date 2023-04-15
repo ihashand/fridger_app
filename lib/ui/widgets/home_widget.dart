@@ -8,8 +8,8 @@ class HomeWidget extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
+        children: const <Widget>[
+          Text(
             'Welcome to Fridger!',
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),

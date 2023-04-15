@@ -7,6 +7,8 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -24,14 +26,14 @@ class LoginScreen extends StatelessWidget {
               hintText: 'Enter your email',
               controller: emailController,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextInput(
               labelText: 'Password',
               hintText: 'Enter your password',
               controller: passwordController,
               obscureText: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             LoginButton(
               text: 'Login',
               onPressed: () {
@@ -39,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                 // For demo purposes, let's assume login is successful
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (_) => HomeScreen(),
+                    builder: (_) => const HomeScreen(),
                   ),
                 );
               },

@@ -17,7 +17,7 @@ class LoginButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed as void Function()?,
       child: isLoading
-          ? SizedBox(
+          ? const SizedBox(
               width: 25,
               height: 25,
               child: CircularProgressIndicator(

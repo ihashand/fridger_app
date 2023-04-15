@@ -71,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        unselectedItemColor: Color.fromARGB(255, 104, 197, 87),
-        selectedItemColor: Color.fromARGB(255, 255, 194, 115),
+        unselectedItemColor: const Color.fromARGB(255, 104, 197, 87),
+        selectedItemColor: const Color.fromARGB(255, 255, 194, 115),
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
-        child: Icon(Icons.login),
+        child: const Icon(Icons.login),
       ),
     );
   }
