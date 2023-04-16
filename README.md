@@ -1,6 +1,6 @@
 # fridger_app
 
-A new app project.
+A new app2 project.
 
 ## Getting Started
 
