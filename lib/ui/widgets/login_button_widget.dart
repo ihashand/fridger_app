@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
-  final String text;
-  final Function onPressed;
-  final bool isLoading;
-
   const LoginButton({
     Key? key,
     required this.text,
     required this.onPressed,
     this.isLoading = false,
   }) : super(key: key);
+  final String text;
+  final Function onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
