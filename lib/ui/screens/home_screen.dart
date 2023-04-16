@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeWidget(),
     Text(
       'Index 1: Fridge',
+    
       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     ),
     Text(
