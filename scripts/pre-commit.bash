@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-printf "\e[33;1m%s\e[0m\n" 'Pre-Commit'
+export PATH="$PATH:/Users/damian/flutter/bin"
+
+printf 'Pre-Commit'
 
 # Undo the stash of the files
 pop_stash_files () {
     if [ -n "$hasChanges" ]; then
-        printf "\e[33;1m%s\e[0m\n" '=== Applying git stash changes ==='
+        printf '=== Applying git stash changes ==='
         git stash pop
     fi
 }
@@ -13,42 +15,42 @@ pop_stash_files () {
 # Stash unstaged files
 hasChanges=$(git diff)
 if [ -n "$hasChanges" ]; then
-    printf "\e[33;1m%s\e[0m\n" 'Stashing unstaged changes'
+    printf 'Stashing unstaged changes'
     git stash push --keep-index
 fi
 
 # Flutter formatter
-printf "\e[33;1m%s\e[0m\n" '=== Running Flutter Formatter ==='
+printf '=== Running Flutter Formatter ==='
 flutter format .
 
 hasNewFilesFormatted=$(git diff)
 if [ -n "$hasNewFilesFormatted" ]; then
     git add .
-    printf "\e[33;1m%s\e[0m\n" 'Formmated files added to git stage'
+    printf 'Formmated files added to git stage'
 fi
-printf "\e[33;1m%s\e[0m\n" 'Finished running Flutter Formatter'
-printf '%s\n' "${avar}"
+printf 'Finished running Flutter Formatter'
+printf "${avar}"
 
 # Flutter Analyzer
-printf "\e[33;1m%s\e[0m\n" '=== Running Flutter analyzer ==='
+printf '=== Running Flutter analyzer ==='
 flutter analyze
 if [ $? -ne 0 ]; then
-  printf "\e[31;1m%s\e[0m\n" '=== Flutter analyzer error ==='
+  printf '=== Flutter analyzer error ==='
   pop_stash_files
   exit 1
 fi
-printf "\e[33;1m%s\e[0m\n" 'Finished running Flutter analyzer'
-printf '%s\n' "${avar}"
+printf 'Finished running Flutter analyzer'
+printf "${avar}"
 
 # Unit tests
-printf "\e[33;1m%s\e[0m\n" '=== Running Unit Tests ==='
+printf '=== Running Unit Tests ==='
 flutter test
 if [ $? -ne 0 ]; then
-  printf "\e[31;1m%s\e[0m\n" '=== Unit tests error ==='
+  printf '=== Unit tests error ==='
   pop_stash_files
   exit 1
 fi
-printf "\e[33;1m%s\e[0m\n" 'Finished running Unit Tests'
-printf '%s\n' "${avar}"
+printf 'Finished running Unit Tests'
+printf "${avar}"
 
 pop_stash_files

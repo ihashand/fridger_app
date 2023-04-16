@@ -9,15 +9,15 @@ class HomeWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const <Widget>[
-          MealButton(name: 'Sniadanie', meals: [
+          MealButton(name: 'Sniadanie', meals: <Meal>[
             Meal(
-                name: "Omlet z szynką",
+                name: 'Omlet z szynką',
                 calories: 300,
                 protein: 20,
                 carbs: 5,
                 fat: 22),
             Meal(
-              name: "Kanapka z awokado",
+              name: 'Kanapka z awokado',
               calories: 400,
               protein: 10,
               carbs: 30,
@@ -25,15 +25,15 @@ class HomeWidget extends StatelessWidget {
             )
           ]),
           SizedBox(height: 16), // <-- Odstęp między elementami
-          MealButton(name: 'Obiad', meals: [
+          MealButton(name: 'Obiad', meals: <Meal>[
             Meal(
-                name: "Schabowy",
+                name: 'Schabowy',
                 calories: 300,
                 protein: 20,
                 carbs: 5,
                 fat: 22),
             Meal(
-              name: "Sałatka z warzywami",
+              name: 'Sałatka z warzywami',
               calories: 350,
               protein: 8,
               carbs: 25,
@@ -41,15 +41,15 @@ class HomeWidget extends StatelessWidget {
             ),
           ]),
           SizedBox(height: 16),
-          MealButton(name: 'Kolacja', meals: [
+          MealButton(name: 'Kolacja', meals: <Meal>[
             Meal(
-                name: "Schabowy",
+                name: 'Schabowy',
                 calories: 300,
                 protein: 20,
                 carbs: 5,
                 fat: 22),
             Meal(
-              name: "Sałatka z warzywami",
+              name: 'Sałatka z warzywami',
               calories: 350,
               protein: 8,
               carbs: 25,
@@ -63,17 +63,16 @@ class HomeWidget extends StatelessWidget {
 }
 
 class MealButton extends StatefulWidget {
+  const MealButton({Key? key, required this.name, required this.meals})
+      : super(key: key);
   final String name;
   final List<Meal> meals;
 
-  const MealButton({Key? key, required this.name, required this.meals})
-      : super(key: key);
-
   @override
-  _MealButtonState createState() => _MealButtonState();
+  MealButtonState createState() => MealButtonState();
 }
 
-class _MealButtonState extends State<MealButton> {
+class MealButtonState extends State<MealButton> {
   bool _isExpanded = false;
 
   @override
@@ -90,8 +89,8 @@ class _MealButtonState extends State<MealButton> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
-          children: [
-            SizedBox(height: 10),
+          children: <Widget>[
+            const SizedBox(height: 10),
             Text(
               widget.name,
               style: const TextStyle(fontSize: 20),
@@ -104,7 +103,7 @@ class _MealButtonState extends State<MealButton> {
                   itemBuilder: (BuildContext context, int index) {
                     Meal meal = widget.meals[index];
                     return Column(
-                      children: [
+                      children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 8),
@@ -118,13 +117,13 @@ class _MealButtonState extends State<MealButton> {
                               horizontal: 16, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: <Widget>[
                               Text(
                                 'kcal: ${meal.calories}',
                                 style: const TextStyle(fontSize: 16),
                               ),
                               Row(
-                                children: [
+                                children: <Widget>[
                                   const SizedBox(width: 4),
                                   const Icon(Icons.local_dining, size: 16),
                                   Text(
@@ -167,12 +166,6 @@ class _MealButtonState extends State<MealButton> {
 }
 
 class Meal {
-  final String name;
-  final int calories;
-  final int protein;
-  final int carbs;
-  final int fat;
-
   const Meal({
     required this.name,
     required this.calories,
@@ -180,4 +173,9 @@ class Meal {
     required this.carbs,
     required this.fat,
   });
+  final String name;
+  final int calories;
+  final int protein;
+  final int carbs;
+  final int fat;
 }

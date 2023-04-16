@@ -8,7 +8,7 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     // Verify that the title is displayed correctly
-    expect(find.text('Fridger Alpha 0.022222'), findsOneWidget);
+    expect(find.text('Fridger Alpha 0.0'), findsOneWidget);
 
     // Verify that the LoginScreen is displayed
     expect(find.byType(LoginScreen), findsOneWidget);
