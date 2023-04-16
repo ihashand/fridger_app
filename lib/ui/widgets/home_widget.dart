@@ -11,50 +11,51 @@ class HomeWidget extends StatelessWidget {
         children: const <Widget>[
           MealButton(name: 'Sniadanie', meals: [
             Meal(
-                  name: "Omlet z szynką",
-                  calories: 300,
-                  protein: 20,
-                  carbs: 5,
-                  fat: 22),
+                name: "Omlet z szynką",
+                calories: 300,
+                protein: 20,
+                carbs: 5,
+                fat: 22),
             Meal(
-                  name: "Kanapka z awokado",
-                  calories: 400,
-                  protein: 10,
-                  carbs: 30,
-                  fat: 25,
-                )]),
-                SizedBox(height: 16), // <-- Odstęp między elementami
+              name: "Kanapka z awokado",
+              calories: 400,
+              protein: 10,
+              carbs: 30,
+              fat: 25,
+            )
+          ]),
+          SizedBox(height: 16), // <-- Odstęp między elementami
           MealButton(name: 'Obiad', meals: [
             Meal(
-                  name: "Schabowy",
-                  calories: 300,
-                  protein: 20,
-                  carbs: 5,
-                  fat: 22),
-           Meal(
-                  name: "Sałatka z warzywami",
-                  calories: 350,
-                  protein: 8,
-                  carbs: 25,
-                  fat: 25,
-                ),
-                ]),
-                 SizedBox(height: 16),
+                name: "Schabowy",
+                calories: 300,
+                protein: 20,
+                carbs: 5,
+                fat: 22),
+            Meal(
+              name: "Sałatka z warzywami",
+              calories: 350,
+              protein: 8,
+              carbs: 25,
+              fat: 25,
+            ),
+          ]),
+          SizedBox(height: 16),
           MealButton(name: 'Kolacja', meals: [
             Meal(
-                  name: "Schabowy",
-                  calories: 300,
-                  protein: 20,
-                  carbs: 5,
-                  fat: 22),
-           Meal(
-                  name: "Sałatka z warzywami",
-                  calories: 350,
-                  protein: 8,
-                  carbs: 25,
-                  fat: 25,
-                ),
-                ])
+                name: "Schabowy",
+                calories: 300,
+                protein: 20,
+                carbs: 5,
+                fat: 22),
+            Meal(
+              name: "Sałatka z warzywami",
+              calories: 350,
+              protein: 8,
+              carbs: 25,
+              fat: 25,
+            ),
+          ])
         ],
       ),
     );
@@ -113,7 +114,8 @@ class _MealButtonState extends State<MealButton> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
