@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fridger_app/ui/screens/login_screen.dart';
 import 'package:fridger_app/ui/widgets/home_widget.dart';
+import 'package:fridger_app/ui/widgets/calendar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -44,8 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Fridger Alpha 0.0'),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Column(
+        children: [
+          CalendarWidget(),
+          Expanded(
+            child: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
