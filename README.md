@@ -1,6 +1,6 @@
 # fridger_app
 
-A new Flutter project.
+A new app project.
 
 ## Getting Started
 

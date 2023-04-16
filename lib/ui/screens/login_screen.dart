@@ -4,10 +4,9 @@ import 'package:fridger_app/ui/widgets/login_button_widget.dart';
 import 'package:fridger_app/ui/widgets/text_input_widget.dart';
 
 class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             TextInput(
               labelText: 'Email',
               hintText: 'Enter your email',
@@ -38,9 +37,8 @@ class LoginScreen extends StatelessWidget {
               text: 'Login',
               onPressed: () {
                 // Perform login validation here
-                // For demo purposes, let's assume login is successful
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
+                  MaterialPageRoute<void>(
                     builder: (_) => const HomeScreen(),
                   ),
                 );
