@@ -5,10 +5,10 @@ class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
 
   @override
-  _CalendarWidgetState createState() => _CalendarWidgetState();
+  CalendarWidgetState createState() => CalendarWidgetState();
 }
 
-class _CalendarWidgetState extends State<CalendarWidget> {
+class CalendarWidgetState extends State<CalendarWidget> {
   late DateTime _selectedDate;
   late List<DateTime> _dates;
 
@@ -20,7 +20,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   List<DateTime> _getDates(DateTime selectedDate) {
-    final List<DateTime> dates = [];
+    final List<DateTime> dates = <DateTime>[];
 
     // add previous 2 days
     for (int i = 2; i >= 1; i--) {
@@ -48,7 +48,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     final DateFormat formatter = DateFormat('EEE\n d');
-    final List<Widget> dateWidgets = [];
+    final List<Widget> dateWidgets = <Widget>[];
 
     for (int i = 0; i < _dates.length; i++) {
       final bool isSelected = _selectedDate == _dates[i];
@@ -57,7 +57,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         GestureDetector(
           onTap: () => _selectDate(_dates[i]),
           child: Column(
-            children: [
+            children: <Widget>[
               Text(
                 formatter.format(_dates[i]),
                 textAlign: TextAlign.center,

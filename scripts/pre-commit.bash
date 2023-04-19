@@ -21,7 +21,7 @@ fi
 
 # Flutter formatter
 printf '=== Running Flutter Formatter ==='
-flutter format .
+dart format .
 
 hasNewFilesFormatted=$(git diff)
 if [ -n "$hasNewFilesFormatted" ]; then

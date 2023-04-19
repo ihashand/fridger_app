@@ -25,21 +25,7 @@ class HomeWidget extends StatelessWidget {
             )
           ]),
           SizedBox(height: 16), // <-- Odstęp między elementami
-          MealButton(name: 'Obiad', meals: <Meal>[
-            Meal(
-                name: 'Schabowy',
-                calories: 300,
-                protein: 20,
-                carbs: 5,
-                fat: 22),
-            Meal(
-              name: 'Sałatka z warzywami',
-              calories: 350,
-              protein: 8,
-              carbs: 25,
-              fat: 25,
-            ),
-          ]),
+          MealButton(name: 'Obiad', meals: <Meal>[]),
           SizedBox(height: 16),
           MealButton(name: 'Kolacja', meals: <Meal>[
             Meal(
@@ -48,13 +34,6 @@ class HomeWidget extends StatelessWidget {
                 protein: 20,
                 carbs: 5,
                 fat: 22),
-            Meal(
-              name: 'Sałatka z warzywami',
-              calories: 350,
-              protein: 8,
-              carbs: 25,
-              fat: 25,
-            ),
           ])
         ],
       ),
@@ -77,25 +56,43 @@ class MealButtonState extends State<MealButton> {
 
   @override
   Widget build(BuildContext context) {
+    final int kcalSum = widget.meals
+        .fold<int>(0, (int prev, Meal curr) => prev + curr.calories);
+    final int proteinSum =
+        widget.meals.fold<int>(0, (int prev, Meal curr) => prev + curr.protein);
+    final int carbsSum =
+        widget.meals.fold<int>(0, (int prev, Meal curr) => prev + curr.carbs);
+    final int fatSum =
+        widget.meals.fold<int>(0, (int prev, Meal curr) => prev + curr.fat);
+
     return GestureDetector(
       onTap: () => setState(() => _isExpanded = !_isExpanded),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-        width: _isExpanded ? 300 : 100,
-        height: _isExpanded ? 50 + widget.meals.length * 80 : 50,
+        width: _isExpanded
+            ? 500
+            : 300, // Odpowiada za rozmiary wyswietlanych okien, przed otwarciem i po otwarciu
+        height: _isExpanded ? 100 + widget.meals.length * 80 : 60,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 10),
             Text(
               widget.name,
               style: const TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 15),
+            if (!_isExpanded)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('kcal: $kcalSum B: $proteinSum W: $carbsSum T: $fatSum'),
+                ],
+              ),
             if (_isExpanded)
               Expanded(
                 child: ListView.builder(
@@ -105,8 +102,7 @@ class MealButtonState extends State<MealButton> {
                     return Column(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(),
                           child: Text(
                             meal.name,
                             style: const TextStyle(fontSize: 18),
@@ -114,54 +110,132 @@ class MealButtonState extends State<MealButton> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
+                              horizontal: 16, vertical: 13),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Text(
-                                'kcal: ${meal.calories}',
-                                style: const TextStyle(fontSize: 16),
-                              ),
                               Row(
                                 children: <Widget>[
                                   const SizedBox(width: 4),
-                                  const Icon(Icons.local_dining, size: 16),
+                                  const Icon(Icons.local_dining, size: 11),
+                                  Text(
+                                    'kcal: ${meal.calories}',
+                                    style: const TextStyle(fontSize: 11),
+                                  ),
+                                  const Icon(Icons.ac_unit_sharp, size: 11),
                                   Text(
                                     '${meal.protein}g',
-                                    style: const TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 11),
                                   ),
                                   const SizedBox(width: 4),
-                                  const Icon(Icons.grain, size: 16),
+                                  const Icon(Icons.grain, size: 11),
                                   Text(
                                     '${meal.carbs}g',
-                                    style: const TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 11),
                                   ),
                                   const SizedBox(width: 4),
-                                  const Icon(Icons.local_pizza, size: 16),
+                                  const Icon(Icons.local_pizza, size: 11),
                                   Text(
                                     '${meal.fat}g',
-                                    style: const TextStyle(fontSize: 16),
+                                    style: const TextStyle(fontSize: 11),
                                   ),
                                   IconButton(
                                     onPressed: () {
                                       // obsługa naciśnięcia przycisku opcji
                                     },
-                                    icon: const Icon(Icons.settings),
+                                    icon: const Icon(Icons.settings, size: 11),
                                   ),
                                 ],
                               ),
                             ],
                           ),
                         ),
+                        if (index ==
+                            widget.meals.length -
+                                1) // sprawdza czy to ostatni posiłek
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                const SizedBox(height: 16),
+                                const Text(
+                                  'kcal:',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  '${_calculateTotalCalories()}',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const Text(
+                                  'Białko:',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  '${_calculateTotalProtein()}g',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const Text(
+                                  'Węglowodany:',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  '${_calculateTotalCarbs()}g',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const Text(
+                                  'Tłuszcz:',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  '${_calculateTotalFat()}g',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     );
                   },
                 ),
-              )
+              ),
           ],
         ),
       ),
     );
+  }
+
+  int _calculateTotalCalories() {
+    int totalCalories = 0;
+    for (Meal meal in widget.meals) {
+      totalCalories += meal.calories;
+    }
+    return totalCalories;
+  }
+
+  int _calculateTotalProtein() {
+    int totalProtein = 0;
+    for (Meal meal in widget.meals) {
+      totalProtein += meal.protein;
+    }
+    return totalProtein;
+  }
+
+  int _calculateTotalCarbs() {
+    int totalCarbs = 0;
+    for (Meal meal in widget.meals) {
+      totalCarbs += meal.carbs;
+    }
+    return totalCarbs;
+  }
+
+  int _calculateTotalFat() {
+    int totalFat = 0;
+    for (Meal meal in widget.meals) {
+      totalFat += meal.fat;
+    }
+    return totalFat;
   }
 }
 
