@@ -48,7 +48,7 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          CalendarWidget(),
+          const CalendarWidget(),
           Expanded(
             child: Center(
               child: _widgetOptions.elementAt(_selectedIndex),
