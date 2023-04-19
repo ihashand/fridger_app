@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridger_app/ui/screens/add_food_to_meal_screen.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -66,14 +67,16 @@ class MealButtonState extends State<MealButton> {
         widget.meals.fold<int>(0, (int prev, Meal curr) => prev + curr.fat);
 
     return GestureDetector(
-      onTap: () => setState(() => _isExpanded = !_isExpanded),
+      onTap: widget.meals.isNotEmpty
+          ? () => setState(() => _isExpanded = !_isExpanded)
+          : null,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         width: _isExpanded
             ? 500
-            : 300, // Odpowiada za rozmiary wyswietlanych okien, przed otwarciem i po otwarciu
-        height: _isExpanded ? 100 + widget.meals.length * 80 : 60,
+            : 400, // Odpowiada za rozmiary wyswietlanych okien, przed otwarciem i po otwarciu
+        height: _isExpanded ? 100 + widget.meals.length * 80 : 90,
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(20),
@@ -88,9 +91,34 @@ class MealButtonState extends State<MealButton> {
             const SizedBox(height: 15),
             if (!_isExpanded)
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text('kcal: $kcalSum B: $proteinSum W: $carbsSum T: $fatSum'),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        IconButton(
+                          onPressed: () {
+                            // obsługa naciśnięcia przycisku opcji
+                          },
+                          icon: const Icon(Icons.settings, size: 11),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const AddFoodToMealScreen(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.add),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             if (_isExpanded)
@@ -143,7 +171,7 @@ class MealButtonState extends State<MealButton> {
                                     onPressed: () {
                                       // obsługa naciśnięcia przycisku opcji
                                     },
-                                    icon: const Icon(Icons.settings, size: 11),
+                                    icon: const Icon(Icons.delete, size: 16),
                                   ),
                                 ],
                               ),
