@@ -17,15 +17,44 @@ class _NewDishScreenState extends State<NewDishScreen> {
   final TextEditingController _youtubeController = TextEditingController();
   final TextEditingController _instagramController = TextEditingController();
 
-  List<String> _steps = [];
-  List<String> _ingredients = [];
-  List<String> _photos = [];
+  final List<String> _steps = [];
+  final List<String> _ingredients = [];
 
   void _addStep() {
-    setState(() {
-      _steps.add(_instructionController.text);
-      _instructionController.clear();
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Dodaj krok'),
+          content: TextField(
+            controller: _instructionController,
+            decoration: const InputDecoration(
+              hintText: 'Wpisz krok',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  final int stepNumber = _steps.length + 1;
+                  _steps
+                      .add('Krok $stepNumber: ${_instructionController.text}');
+                  _instructionController.clear();
+                });
+                Navigator.pop(context);
+              },
+              child: const Text('Dodaj'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Anuluj'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _addIngredient() {
@@ -61,24 +90,6 @@ class _NewDishScreenState extends State<NewDishScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.superscript),
-                    onPressed: () {
-                      // Tu dodana
-                    },
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: _nameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Wpisz nazwe dla Twojej potrawy!',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 8.0),
               ElevatedButton(
                 onPressed: _addPhoto,
@@ -94,23 +105,66 @@ class _NewDishScreenState extends State<NewDishScreen> {
                 onPressed: _addStep,
                 child: const Text('Dodaj kroki'),
               ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: _steps.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final String step = _steps[index];
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Text(step),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          setState(() {
+                            _steps.removeAt(index);
+                          });
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
               const SizedBox(height: 16.0),
-              const Text(
-                'Czas przygotowania (w minutach)',
-                style: TextStyle(fontSize: 16.0),
-              ),
-              TextField(
-                controller: _durationController,
-                keyboardType: TextInputType.number,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Wpisz nazwe dla Twojej potrawy!',
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16.0),
-              const Text(
-                'Ilość porcji',
-                style: TextStyle(fontSize: 16.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _durationController,
+                      decoration: const InputDecoration(
+                        hintText: 'Czas przygotowania (w minutach)',
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              TextField(
-                controller: _quantityController,
-                keyboardType: TextInputType.number,
+              const SizedBox(height: 16.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _quantityController,
+                      decoration: const InputDecoration(
+                        hintText: 'Ilość porcji',
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16.0),
               Row(
