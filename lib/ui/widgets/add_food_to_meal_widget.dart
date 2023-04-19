@@ -67,6 +67,35 @@ class AddFoodToMealWidget extends StatelessWidget {
               },
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Obsługa naciśnięcia przycisku Ulubione
+                },
+                child: const Text('Ulubione'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Obsługa naciśnięcia przycisku Własne
+                },
+                child: const Text('Własne'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Obsługa naciśnięcia przycisku Nowa potrawa
+                },
+                child: const Text('Nowa potrawa'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Obsługa naciśnięcia przycisku Nowy produkt
+                },
+                child: const Text('Nowy produkt'),
+              ),
+            ],
+          ),
         ],
       ),
     );
