@@ -46,7 +46,7 @@ class HomeScreenState extends State<HomeScreen> {
         title: const Text('Fridger Alpha 0.0'),
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           const CalendarWidget(),
           Expanded(
             child: Center(
