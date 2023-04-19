@@ -38,11 +38,24 @@ class CalendarWidgetState extends State<CalendarWidget> {
     return dates;
   }
 
-  void _selectDate(DateTime date) {
-    setState(() {
-      _selectedDate = date;
-      _dates = _getDates(_selectedDate);
-    });
+  Future<void> _selectDate(DateTime date) async {
+    if (_selectedDate == date) {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100),
+      );
+      setState(() {
+        _selectedDate = picked ?? _selectedDate;
+        _dates = _getDates(_selectedDate);
+      });
+    } else {
+      setState(() {
+        _selectedDate = date;
+        _dates = _getDates(_selectedDate);
+      });
+    }
   }
 
   @override
@@ -55,7 +68,7 @@ class CalendarWidgetState extends State<CalendarWidget> {
 
       dateWidgets.add(
         GestureDetector(
-          onTap: () => _selectDate(_dates[i]),
+          onTap: () async => await _selectDate(_dates[i]),
           child: Column(
             children: <Widget>[
               Text(
