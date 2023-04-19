@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'add_food_to_meal_widget.dart';
+import '../screens/add_food_to_meal_screen.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -111,7 +111,7 @@ class MealButtonState extends State<MealButton> {
                               context,
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const AddFoodToMealWidget(),
+                                    AddFoodToMealWidget(),
                               ),
                             );
                           },
