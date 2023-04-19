@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'add_food_to_meal_widget.dart';
+
 class HomeWidget extends StatelessWidget {
   const HomeWidget({Key? key}) : super(key: key);
 
@@ -105,7 +107,13 @@ class MealButtonState extends State<MealButton> {
                         ),
                         IconButton(
                           onPressed: () {
-                            // obsługa naciśnięcia przycisku dodaj posilek
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const AddFoodToMealWidget(),
+                              ),
+                            );
                           },
                           icon: const Icon(Icons.add),
                         ),

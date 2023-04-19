@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fridger_app/ui/screens/login_screen.dart';
 import 'package:fridger_app/ui/widgets/home_widget.dart';
 import 'package:fridger_app/ui/widgets/calendar_widget.dart';
-import 'package:fridger_app/ui/widgets/calendar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
