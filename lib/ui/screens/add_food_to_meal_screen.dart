@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'new_dish_screen.dart';
 
 class AddFoodToMealScreen extends StatefulWidget {
   const AddFoodToMealScreen({Key? key}) : super(key: key);
@@ -101,7 +102,12 @@ class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Obsługa naciśnięcia przycisku Nowa potrawa
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => NewDishScreen(),
+                    ),
+                  );
                 },
                 child: const Text('Nowa potrawa'),
               ),
