@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fridger_app/ui/screens/new_product_screen.dart';
 import 'new_dish_screen.dart';
 
 class AddFoodToMealScreen extends StatefulWidget {
@@ -82,7 +83,8 @@ class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (BuildContext context) => AddFoodToMealScreen(),
+                      builder: (BuildContext context) =>
+                          const AddFoodToMealScreen(),
                     ),
                   );
                 },
@@ -105,7 +107,7 @@ class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (BuildContext context) => NewDishScreen(),
+                      builder: (BuildContext context) => const NewDishScreen(),
                     ),
                   );
                 },
@@ -113,7 +115,12 @@ class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Obsługa naciśnięcia przycisku Nowy produkt
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => NewProductScreen(),
+                    ),
+                  );
                 },
                 child: const Text('Nowy produkt'),
               ),

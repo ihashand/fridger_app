@@ -94,17 +94,6 @@ class _NewDishScreenState extends State<NewDishScreen> {
                 onPressed: _addStep,
                 child: const Text('Dodaj kroki'),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: _steps.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: Text('Krok ${index + 1}'),
-                    title: Text(_steps[index]),
-                  );
-                },
-              ),
               const SizedBox(height: 16.0),
               const Text(
                 'Czas przygotowania (w minutach)',
