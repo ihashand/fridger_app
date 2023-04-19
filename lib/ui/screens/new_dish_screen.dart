@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fridger_app/ui/screens/add_ingredient_screen.dart';
+
+import 'add_food_to_meal_screen.dart';
 
 class NewDishScreen extends StatefulWidget {
   const NewDishScreen({super.key});
@@ -58,10 +61,12 @@ class _NewDishScreenState extends State<NewDishScreen> {
   }
 
   void _addIngredient() {
-    setState(() {
-      _ingredients.add(_ingredientController.text);
-      _ingredientController.clear();
-    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const AddIngredientScreen(),
+      ),
+    );
   }
 
   void _addPhoto() {
