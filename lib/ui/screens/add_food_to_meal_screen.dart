@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AddFoodToMealWidget extends StatelessWidget {
-  const AddFoodToMealWidget({Key? key}) : super(key: key);
+class AddFoodToMealScreen extends StatefulWidget {
+  const AddFoodToMealScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AddFoodToMealScreen> createState() => _AddFoodToMealScreenState();
+}
+
+class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +81,7 @@ class AddFoodToMealWidget extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (BuildContext context) => AddFoodToMealWidget(),
+                      builder: (BuildContext context) => AddFoodToMealScreen(),
                     ),
                   );
                 },

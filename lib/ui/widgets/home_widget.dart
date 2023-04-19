@@ -111,7 +111,7 @@ class MealButtonState extends State<MealButton> {
                               context,
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    AddFoodToMealWidget(),
+                                    AddFoodToMealScreen(),
                               ),
                             );
                           },
