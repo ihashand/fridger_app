@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class AddFoodToMealWidget extends StatelessWidget {
   const AddFoodToMealWidget({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +69,18 @@ class AddFoodToMealWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Obsługa naciśnięcia przycisku Ostatnie
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AddFoodToMealWidget(),
+                    ),
+                  );
+                },
+                child: const Text('Ostatnie'),
+              ),
               ElevatedButton(
                 onPressed: () {
                   // Obsługa naciśnięcia przycisku Ulubione
