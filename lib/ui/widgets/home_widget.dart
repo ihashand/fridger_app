@@ -10,6 +10,7 @@ class HomeWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: const <Widget>[
           MealButton(name: 'Sniadanie', meals: <Meal>[
+          MealButton(name: 'Sniadanie', meals: <Meal>[
             Meal(
                 name: 'Omlet z szynką',
                 calories: 300,
@@ -44,13 +45,17 @@ class HomeWidget extends StatelessWidget {
 class MealButton extends StatefulWidget {
   const MealButton({Key? key, required this.name, required this.meals})
       : super(key: key);
+  const MealButton({Key? key, required this.name, required this.meals})
+      : super(key: key);
   final String name;
   final List<Meal> meals;
 
   @override
   MealButtonState createState() => MealButtonState();
+  MealButtonState createState() => MealButtonState();
 }
 
+class MealButtonState extends State<MealButton> {
 class MealButtonState extends State<MealButton> {
   bool _isExpanded = false;
 
@@ -101,6 +106,7 @@ class MealButtonState extends State<MealButton> {
                     Meal meal = widget.meals[index];
                     return Column(
                       children: <Widget>[
+                      children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.symmetric(),
                           child: Text(
@@ -115,6 +121,7 @@ class MealButtonState extends State<MealButton> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               Row(
+                                children: <Widget>[
                                 children: <Widget>[
                                   const SizedBox(width: 4),
                                   const Icon(Icons.local_dining, size: 11),
@@ -252,4 +259,10 @@ class Meal {
   final int protein;
   final int carbs;
   final int fat;
+  final String name;
+  final int calories;
+  final int protein;
+  final int carbs;
+  final int fat;
 }
+
