@@ -15,3 +15,6 @@ A new app project.
 
 ### To run unit tests:
 `flutter test`
+
+### To get new packgages:
+`flutter pub get`
