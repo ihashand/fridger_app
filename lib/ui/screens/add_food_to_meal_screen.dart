@@ -15,7 +15,7 @@ class _AddFoodToMealScreenState extends State<AddFoodToMealScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [
+          children: <Widget>[
             const Expanded(
               child: TextField(
                 decoration: InputDecoration(

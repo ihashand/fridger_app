@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fridger_app/ui/screens/home_screen.dart';
 import 'package:fridger_app/ui/widgets/login_button_widget.dart';
 import 'package:fridger_app/ui/widgets/text_input_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -10,9 +11,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fridger Alpha 0.0'),
+        title: Text(appLocalizations.appTitle),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -21,20 +23,20 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextInput(
-              labelText: 'Email',
-              hintText: 'Enter your email',
+              labelText: appLocalizations.emailLabel,
+              hintText: appLocalizations.emailHint,
               controller: emailController,
             ),
             const SizedBox(height: 16),
             TextInput(
-              labelText: 'Password',
-              hintText: 'Enter your password',
+              labelText: appLocalizations.passwordLabel,
+              hintText: appLocalizations.passwordHint,
               controller: passwordController,
               obscureText: true,
             ),
             const SizedBox(height: 16),
             LoginButton(
-              text: 'Login',
+              text: appLocalizations.loginButton,
               onPressed: () {
                 // Perform login validation here
                 Navigator.of(context).pushReplacement(

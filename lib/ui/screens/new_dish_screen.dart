@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fridger_app/ui/screens/add_ingredient_screen.dart';
 
-import 'add_food_to_meal_screen.dart';
-
 class NewDishScreen extends StatefulWidget {
   const NewDishScreen({super.key});
 
@@ -13,7 +11,6 @@ class NewDishScreen extends StatefulWidget {
 
 class _NewDishScreenState extends State<NewDishScreen> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _ingredientController = TextEditingController();
   final TextEditingController _instructionController = TextEditingController();
   final TextEditingController _durationController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
@@ -21,7 +18,6 @@ class _NewDishScreenState extends State<NewDishScreen> {
   final TextEditingController _instagramController = TextEditingController();
 
   final List<String> _steps = [];
-  final List<String> _ingredients = [];
 
   void _addStep() {
     showDialog(
