@@ -1,0 +1,9 @@
+{
+  "appTitle": "Fridger Alpha 0.0 EN",
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "passwordLabel": "Password",
+  "passwordHint": "Enter your password",
+  "loginButton": "Login"
+}
+
